@@ -9,12 +9,26 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <h1>My Projects</h1>
-            <button>New Project</button>
+            <button id="add-project-button">New Project</button>
         </div>
         <ul id="project-list">
             
         </ul>
     </div>
     <div class="content"></div>
+
+    <dialog class="modal" id="project-form">
+        <form>
+            <h1>New Project</h1>
+            <div id="project-form-inputs">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div id="project-form-buttons">
+                <button type="button">Cancel</button>
+                <button type="submit">OK</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>

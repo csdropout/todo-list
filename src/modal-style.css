@@ -1,0 +1,29 @@
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1em;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+form h1 {
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+#project-form-inputs {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 0.2rem;
+}
+
+#project-form-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
