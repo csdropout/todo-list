@@ -1,5 +1,5 @@
 {
-  "name": "webpack-template",
+  "name": "todo-list",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,16 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/csdropout/webpack-template.git"
+    "url": "git+https://github.com/csdropout/todo-list.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/csdropout/webpack-template/issues"
+    "url": "https://github.com/csdropout/todo-list/issues"
   },
-  "homepage": "https://github.com/csdropout/webpack-template#readme",
+  "homepage": "https://github.com/csdropout/todo-list",
   "devDependencies": {
     "css-loader": "^7.1.4",
     "html-webpack-plugin": "^5.6.6",
