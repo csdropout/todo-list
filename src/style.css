@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 0.5em 1em;
+    border-radius: 1em;
+}
+
+body {
+    --default-padding: 1rem;
+
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+}
+
+.sidebar {
+    background-color: #2f4f4f;
+    padding: var(--default-padding);
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+#project-list {
+    font-size: 1.5rem;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+#project-list li {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 0.5em;
+}
+
+#project-list li:hover{
+    background-color: #446161;
+}
+
+.content {
+    background-color: grey;
+    padding: var(--default-padding);
+}
