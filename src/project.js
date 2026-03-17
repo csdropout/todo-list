@@ -28,9 +28,10 @@ export const projectManager = (() => {
     const deleteProject = (id) => {
         projects = projects.filter((project) => project.id !== id);
     }
-    const getProjects = () => {
-        return projects;
+
+    const getProject = (id) => {
+        return projects.find((project) => project.id === id);
     }
 
-    return { getProjects, addProject, deleteProject }
+    return { getProject, addProject, deleteProject }
 })();

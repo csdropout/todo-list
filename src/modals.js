@@ -36,5 +36,50 @@ function addProjectToList(project) {
     const item = document.createElement("li");
     item.textContent = project.name;
     item.dataset.id = project.id;
+
+    item.addEventListener("click", (e) => {
+        const p = projectManager.getProject(project.id);
+        displayProject(p);
+    })
+
     list.appendChild(item);
+}
+
+function displayProject(project) {
+    const content = document.querySelector(".content");
+    
+    // Reset
+    content.textContent = "";
+
+    // Header (project name + add task button)
+    const header = document.createElement("header");
+    const name = document.createElement("h1");
+    const addButton = document.createElement("button");
+
+    header.classList.add("content-header");
+    name.textContent = project.name;
+    addButton.textContent = "Add Task";
+
+    header.append(name, addButton);
+
+    const taskHeading = document.createElement("h2");
+    taskHeading.textContent = "Tasks";
+
+    // Task list
+    const list = document.createElement("ul");
+    
+    for (const todo of project.todoList) {
+        const li = document.createElement("li");
+        const checkbox = document.createElement("input");
+        const taskName = document.createElement("p");
+        const deleteButton = document.createElement("button");
+
+        checkbox.type = "checkbox";
+        taskName.textContent = todo.name;
+        deleteButton.textContent = "x";
+
+        li.append(checkbox, taskName, deleteButton);
+    }
+
+    content.append(header, taskHeading, list);
 }

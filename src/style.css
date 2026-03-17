@@ -22,7 +22,8 @@ body {
     padding: var(--default-padding);
 }
 
-.sidebar-header {
+.sidebar-header,
+.content-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
@@ -46,6 +47,41 @@ body {
 }
 
 .content {
-    background-color: grey;
+    --main-bg-color: #808080;
+    --hover-bg-color: #737373;
+    
+    background-color: var(--main-bg-color);
     padding: var(--default-padding);
+}
+
+.content ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.content ul li {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+.content ul li:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.content ul li p {
+    flex: 1;
+}
+
+.content ul li button {
+    border: none;
+    background: none;
+    padding: 0.5em;
+}
+
+.content ul li button:hover {
+    cursor: pointer;
 }
