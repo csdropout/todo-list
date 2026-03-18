@@ -15,7 +15,8 @@ form h1 {
     margin-bottom: 0.5em;
 }
 
-#project-form-inputs {
+#project-form-inputs,
+.form-inputs {
     display: grid;
     grid-template-columns: max-content max-content;
     gap: 0.2rem;

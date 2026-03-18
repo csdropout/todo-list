@@ -20,6 +20,7 @@ export default class Project {
 
 export const projectManager = (() => {
     let projects = []
+    let activeProject = null;
 
     const addProject = (project) => {
         projects.push(project);
@@ -32,6 +33,14 @@ export const projectManager = (() => {
     const getProject = (id) => {
         return projects.find((project) => project.id === id);
     }
+    
+    const setActiveProject = (id) => {
+        activeProject = projects.find((project) => project.id === id);
+    }
 
-    return { getProject, addProject, deleteProject }
+    const getActiveProject = () => {
+        return activeProject;
+    }
+
+    return { getProject, addProject, deleteProject, setActiveProject, getActiveProject }
 })();
