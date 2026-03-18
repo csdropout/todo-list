@@ -2,7 +2,7 @@ import Project from "./project.js";
 import { projectManager } from "./project.js";
 import Todo from "./todo.js";
 
-export { setUpProjectForm, initProjectFormButtons, initTaskFormButtons }
+export { setUpProjectForm, initProjectFormButtons, initTaskFormButtons, addProjectToList, displayProject }
 
 function setUpProjectForm() {
     const button = document.querySelector("#add-project-button");
@@ -30,7 +30,7 @@ function initProjectFormButtons() {
         const name = form.querySelector("#name").value;
         const project = new Project(name);
         projectManager.addProject(project);
-        addProjectToList(project)
+        addProjectToList(project);
         form.reset();
         dialog.close();
     })
