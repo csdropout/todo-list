@@ -91,6 +91,7 @@ function displayProject(project) {
         deleteButton.textContent = "x";
 
         li.append(checkbox, taskName, deleteButton);
+        list.append(li);
     }
 
     content.append(header, taskHeading, list);
