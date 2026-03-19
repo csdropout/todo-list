@@ -18,14 +18,13 @@ function initProjectFormButtons() {
     const form = document.querySelector("#project-form");
     const buttons = document.querySelectorAll("#project-form-buttons button");
     const cancelButton = buttons[0];
-    const submitButton = buttons[1];
 
-    cancelButton.addEventListener("click", () => {
+    cancelButton.onclick = () => {
         form.reset();
         dialog.close();
-    })
+    }
 
-    submitButton.addEventListener("click", (e) => {
+    form.addEventListener("submit", (e) => {
         e.preventDefault();
         const name = form.querySelector("#name").value;
         const project = new Project(name);
@@ -113,7 +112,7 @@ function openTodoForm(todo, li) {
 
     cancelButton.onclick = () => { dialog.close() }
 
-    submitButton.onclick = (e) => {
+    form.addEventListener("submit", (e) => {
         e.preventDefault();
 
         if (isEdit) {
@@ -140,7 +139,7 @@ function openTodoForm(todo, li) {
 
         form.reset();
         dialog.close();
-    }
+    })
 
     dialog.showModal();
 }
