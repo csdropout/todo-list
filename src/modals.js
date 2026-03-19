@@ -97,7 +97,6 @@ function openTodoForm(todo, li) {
     const priority = document.querySelector("select[name='priority']");
     const buttons = form.querySelectorAll("button");
     const cancelButton = buttons[0];
-    const submitButton = buttons[1];
 
     if (isEdit) {
         formHeader.textContent = 'Edit Todo';
