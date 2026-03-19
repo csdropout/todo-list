@@ -2,7 +2,7 @@ import Project from "./project.js";
 import { projectManager } from "./project.js";
 import Todo from "./todo.js";
 
-export { setUpProjectForm, initProjectFormButtons, initTaskFormButtons, addProjectToList, displayProject }
+export { setUpProjectForm, initProjectFormButtons, openTodoForm, addProjectToList, displayProject }
 
 function setUpProjectForm() {
     const button = document.querySelector("#add-project-button");
@@ -66,10 +66,7 @@ function displayProject(project) {
     name.textContent = project.name;
     addButton.textContent = "Add Task";
 
-    addButton.addEventListener("click", () => {
-        const dialog = document.querySelector("#todo-dialog");
-        dialog.showModal();
-    })
+    addButton.onclick = () => { openTodoForm(); }
 
     header.append(name, addButton);
 
@@ -81,55 +78,71 @@ function displayProject(project) {
     list.classList.add("todo-list");
     
     for (const todo of project.todoList) {
-        const li = document.createElement("li");
-        const checkbox = document.createElement("input");
-        const taskName = document.createElement("p");
-        const deleteButton = document.createElement("button");
-
-        checkbox.type = "checkbox";
-        taskName.textContent = todo.name;
-        deleteButton.textContent = "x";
-
-        li.append(checkbox, taskName, deleteButton);
-        list.append(li);
+        const item = createTodoItem(todo);
+        list.append(item);
     }
 
     content.append(header, taskHeading, list);
 }
 
-function initTaskFormButtons() {
+function openTodoForm(todo, li) {
+    const isEdit = arguments.length === 2? true : false;
+
     const dialog = document.querySelector("#todo-dialog");
     const form = document.querySelector("#todo-form");
+    const formHeader = document.querySelector("#todo-form h1");
+    const name = document.querySelector("input[name='todo-name']");
+    const notes = document.querySelector("textarea[name='notes']");
+    const date = document.querySelector("input[name='date']");
+    const time = document.querySelector("input[name='time']");
+    const priority = document.querySelector("select[name='priority']");
     const buttons = form.querySelectorAll("button");
     const cancelButton = buttons[0];
     const submitButton = buttons[1];
 
-    cancelButton.addEventListener("click", () => {
-        dialog.close();
-    })
+    if (isEdit) {
+        formHeader.textContent = 'Edit Todo';
+        name.value = todo.name;
+        notes.value = todo.notes;
+        date.value = todo.date;
+        time.value = todo.time;
+        priority.value = todo.priority;
+    } else {
+        formHeader.textContent = 'New Todo';
+    }
 
-    submitButton.addEventListener("click", (e) => {
+    cancelButton.onclick = () => { dialog.close() }
+
+    submitButton.onclick = (e) => {
         e.preventDefault();
 
-        const name = document.querySelector("input[name='todo-name']").value;
-        const notes = document.querySelector("textarea[name='notes']").value;
-        const date = document.querySelector("input[name='date']").value;
-        const time = document.querySelector("input[name='time']").value;
-        const priority = document.querySelector("select[name='priority']").value;
+        if (isEdit) {
+            const updates = {
+                name: name.value,
+                notes: notes.value,
+                date: date.value,
+                time: time.value,
+                priority: priority.value,
+            }
+            projectManager.editTodo(todo.id, updates);
+            li.querySelector("p").textContent = name.value;
+        } else {
+            const todo = new Todo(name.value, notes.value, date.value, time.value, priority.value);
 
-        const todo = new Todo(name, notes, date, time, priority);
+            const currentProject = projectManager.getActiveProject();
+            currentProject.addTodo(todo);
 
-        const currentProject = projectManager.getActiveProject();
-        currentProject.addTodo(todo);
-
-        // add to list
-        const todoList = document.querySelector(".todo-list");
-        const item = createTodoItem(todo);
-        todoList.appendChild(item);
+            // add to list 
+            const todoList = document.querySelector(".todo-list");
+            const item = createTodoItem(todo);
+            todoList.appendChild(item);
+        }
 
         form.reset();
         dialog.close();
-    })
+    }
+
+    dialog.showModal();
 }
 
 function createTodoItem(todo) {
@@ -143,6 +156,9 @@ function createTodoItem(todo) {
     deleteButton.textContent = "x";
 
     todoItem.append(checkbox, name, deleteButton);
+    todoItem.dataset.id = todo.id;
+
+    todoItem.onclick = () => { openTodoForm(todo, todoItem); }
 
     return todoItem;
 }

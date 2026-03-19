@@ -7,4 +7,8 @@ export default class Todo {
         this.priority = priority;
         this.id = crypto.randomUUID();
     }
+
+    update(fields) {
+        Object.assign(this, fields);
+    }
 }

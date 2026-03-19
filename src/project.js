@@ -16,6 +16,11 @@ export default class Project {
     getTodo(id) {
         return this.todoList.find((todo) => todo.id === id);
     }
+
+    editTodo(id, updates) {
+        const todo = this.getTodo(id);
+        todo.update(updates);
+    }
 }
 
 export const projectManager = (() => {
@@ -42,5 +47,9 @@ export const projectManager = (() => {
         return activeProject;
     }
 
-    return { getProject, addProject, deleteProject, setActiveProject, getActiveProject }
+    const editTodo = (todoId, updates) => {
+        activeProject.editTodo(todoId, updates)
+    }
+
+    return { getProject, addProject, deleteProject, setActiveProject, getActiveProject, editTodo }
 })();
