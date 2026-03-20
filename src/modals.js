@@ -201,11 +201,12 @@ function createTodoItem(todo) {
     const deleteButton = document.createElement("button");
 
     checkbox.setAttribute("type", "checkbox");
+    if (todo.status === Status.COMPLETE) { checkbox.checked = true; }
     checkbox.onclick = (e) => {
         e.stopPropagation();
         todo.status = todo.status === Status.INCOMPLETE? Status.COMPLETE : Status.INCOMPLETE;
     }
-    
+
     name.textContent = todo.name;
     deleteButton.textContent = "x";
 
