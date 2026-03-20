@@ -18,7 +18,7 @@ body {
 }
 
 .sidebar {
-    background-color: #2f4f4f;
+    background-color: #2367DC;
     padding: var(--default-padding);
 }
 
@@ -43,12 +43,12 @@ body {
 }
 
 #project-list li:hover{
-    background-color: #446161;
+    background-color: #3976e0;
 }
 
 .content {
-    --main-bg-color: #808080;
-    --hover-bg-color: #737373;
+    --main-bg-color: #f9f4f6;
+    --hover-bg-color: #e0dcdd;
     
     background-color: var(--main-bg-color);
     padding: var(--default-padding);
