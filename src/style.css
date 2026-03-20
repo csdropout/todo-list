@@ -40,6 +40,7 @@ body {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
+    align-content: center;
 }
 
 #project-list {
@@ -118,9 +119,10 @@ body {
     cursor: pointer;
 }
 
-.button-group {
+.header-button-group {
     display: flex;
     gap: 0.5em;
+    align-items: center;
 }
 
 #edit-project-button {

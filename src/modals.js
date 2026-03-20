@@ -83,7 +83,7 @@ function displayProject(project) {
     addButton.onclick = () => { openTodoForm(); }
     addButton.id = "add-todo-button";
 
-    buttonGroup.classList.add("button-group");
+    buttonGroup.classList.add("header-button-group");
     buttonGroup.append(editButton, addButton);
 
     header.append(name, buttonGroup);
