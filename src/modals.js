@@ -13,8 +13,8 @@ function initAddProjectButton() {
 
 function setupProjectForm() {
     const dialog = document.querySelector("#project-dialog");
-    const form = document.querySelector("#project-form");
-    const buttons = document.querySelectorAll("#project-form-buttons button");
+    const form = dialog.querySelector("#project-form");
+    const buttons = form.querySelectorAll(".button-group    ");
     const cancelButton = buttons[0];
 
     cancelButton.onclick = () => {

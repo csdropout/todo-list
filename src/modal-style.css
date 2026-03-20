@@ -4,15 +4,54 @@
   top: 50%;
   transform: translate(-50%, -50%);
   padding: 1em;
+  border-radius: 0.5em;
+  border: 2px solid black;
+  min-width: 30vw;
+  max-height: 80vh;
+  overflow-y: scroll;
+  padding: 1em;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5em;
+  justify-content: end;
+  margin-top: 1em;
+}
+
+.button-group button {
+  min-width: 20%;
 }
 
 dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(3px);
 }
 
 form h1 {
     text-align: center;
-    margin-bottom: 0.5em;
 }
 
 #project-form-inputs,
@@ -20,11 +59,5 @@ form h1 {
     display: grid;
     grid-template-columns: max-content max-content;
     gap: 0.2rem;
-}
-
-#project-form-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-    gap: 0.5rem;
-    margin-top: 1rem;
+    row-gap: 0.5em;
 }
