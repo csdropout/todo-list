@@ -62,15 +62,21 @@ function displayProject(project) {
     // Header (project name + add task button)
     const header = document.createElement("header");
     const name = document.createElement("h1");
+    const buttonGroup = document.createElement("div");
+    const editButton = document.createElement("button");
     const addButton = document.createElement("button");
 
     header.classList.add("content-header");
     name.textContent = project.name;
+    editButton.textContent = "Edit Project"
     addButton.textContent = "Add Task";
 
+    editButton.onclick = () => { showEditProjectDialog(project); }
     addButton.onclick = () => { openTodoForm(); }
 
-    header.append(name, addButton);
+    buttonGroup.append(editButton, addButton);
+
+    header.append(name, buttonGroup);
 
     const taskHeading = document.createElement("h2");
     taskHeading.textContent = "Tasks";
@@ -85,6 +91,35 @@ function displayProject(project) {
     }
 
     content.append(header, taskHeading, list);
+}
+
+function showEditProjectDialog(project) {
+    const dialog = document.querySelector("#edit-project-dialog");
+    const form = dialog.querySelector("#edit-project-form");
+    const name = form.querySelector("[name='name']");
+    const buttons = form.querySelectorAll("button");
+    const cancelButton = buttons[0];
+    const deleteButton = buttons[1];
+
+    name.value = project.name;
+
+    cancelButton.onclick = () => { dialog.close(); }
+    deleteButton.onclick = () => {
+        
+    }
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        projectManager.editProject(project.id, { name: name.value });
+
+        // edit dom
+        const projectHeading = document.querySelector(".content-header h1");
+        projectHeading.textContent = project.name;
+
+        dialog.close();
+    }, { once: true })
+
+    dialog.showModal();
 }
 
 function openTodoForm(todo, li) {

@@ -1,6 +1,6 @@
 import "./style.css";
 import "./modal-style.css";
-import { initAddProjectButton, initProjectFormButtons, addProjectToList, displayProject} from "./modals.js";
+import { initAddProjectButton, setupProjectForm, addProjectToList, displayProject} from "./modals.js";
 import Project, { projectManager } from "./project.js"; 
 
 // set up default page
@@ -11,4 +11,4 @@ addProjectToList(defaultProject);
 displayProject(defaultProject);
 
 initAddProjectButton();
-initProjectFormButtons();
+setupProjectForm();
