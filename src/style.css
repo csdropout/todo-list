@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+:root { font-family: 'Inter', system-ui, sans-serif; }
+
+@supports (font-variation-settings: normal) {
+  :root { font-family: 'Inter var', system-ui, sans-serif; }
+}
+
 button {
     padding: 0.5em 1em;
     border-radius: 1em;
