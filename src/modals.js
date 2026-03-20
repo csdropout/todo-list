@@ -1,6 +1,6 @@
 import Project from "./project.js";
 import { projectManager } from "./project.js";
-import Todo, { Status } from "./todo.js";
+import Todo, { Priority, Status } from "./todo.js";
 
 export { initAddProjectButton, setupProjectForm, openTodoForm, addProjectToList, displayProject }
 
@@ -189,7 +189,7 @@ function openTodoForm(todo, li) {
 
         form.reset();
         dialog.close();
-    })
+    }, { once: true })
 
     dialog.showModal();
 }
@@ -202,6 +202,17 @@ function createTodoItem(todo) {
 
     checkbox.setAttribute("type", "checkbox");
     if (todo.status === Status.COMPLETE) { checkbox.checked = true; }
+    switch (todo.priority) {
+        case Priority.LOW:
+            todoItem.classList.add("low-priority");
+            break;
+        case Priority.MED:
+            todoItem.classList.add("med-priority");
+            break;
+        case Priority.HIGH:
+            todoItem.classList.add("high-priority");
+            break;
+    }
     checkbox.onclick = (e) => {
         e.stopPropagation();
         todo.status = todo.status === Status.INCOMPLETE? Status.COMPLETE : Status.INCOMPLETE;
