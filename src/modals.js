@@ -2,18 +2,16 @@ import Project from "./project.js";
 import { projectManager } from "./project.js";
 import Todo from "./todo.js";
 
-export { setUpProjectForm, initProjectFormButtons, openTodoForm, addProjectToList, displayProject }
+export { initAddProjectButton, setupProjectForm, openTodoForm, addProjectToList, displayProject }
 
-function setUpProjectForm() {
+function initAddProjectButton() {
     const button = document.querySelector("#add-project-button");
     const dialog = document.querySelector("#project-dialog");
 
-    button.addEventListener("click", (e) => {
-        dialog.showModal();
-    })
+    button.onclick = () => { dialog.showModal(); }
 }
 
-function initProjectFormButtons() {
+function setupProjectForm() {
     const dialog = document.querySelector("#project-dialog");
     const form = document.querySelector("#project-form");
     const buttons = document.querySelectorAll("#project-form-buttons button");
@@ -26,6 +24,7 @@ function initProjectFormButtons() {
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
+
         const name = form.querySelector("#name").value;
         const project = new Project(name);
         projectManager.addProject(project);
@@ -37,9 +36,13 @@ function initProjectFormButtons() {
 
 function addProjectToList(project) {
     const list = document.querySelector("#project-list");
+    const item = createProjectItem(project);
+    list.appendChild(item);
+}
+
+function createProjectItem(project) {
     const item = document.createElement("li");
     item.textContent = project.name;
-    item.dataset.id = project.id;
 
     item.addEventListener("click", (e) => {
         const p = projectManager.getProject(project.id);
@@ -47,7 +50,7 @@ function addProjectToList(project) {
         projectManager.setActiveProject(project.id)
     })
 
-    list.appendChild(item);
+    return item;
 }
 
 function displayProject(project) {
