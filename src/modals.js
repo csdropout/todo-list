@@ -48,6 +48,11 @@ function createProjectItem(project) {
         const p = projectManager.getProject(project.id);
         displayProject(p);
         projectManager.setActiveProject(project.id)
+
+        // set current project to be of class active
+        const activeProject = document.querySelector("#project-list li.active");
+        if (activeProject) { activeProject.classList.remove("active")}
+        item.classList.add("active");
     })
 
     return item;
@@ -105,7 +110,15 @@ function showEditProjectDialog(project) {
 
     cancelButton.onclick = () => { dialog.close(); }
     deleteButton.onclick = () => {
-        
+        // empty right display
+        document.querySelector(".content").textContent = "";
+
+        // delete project from dom list
+        const currentProject = document.querySelector("#project-list li.active");
+        document.querySelector("#project-list").removeChild(currentProject);
+
+        // delete project from project list
+        projectManager.deleteProject(project.id);
     }
 
     form.addEventListener("submit", (e) => {
