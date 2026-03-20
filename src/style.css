@@ -19,6 +19,7 @@ body {
 
 .sidebar {
     background-color: #2367DC;
+    color: #fff;
     padding: var(--default-padding);
 }
 
@@ -30,7 +31,7 @@ body {
 }
 
 #project-list {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     list-style-type: none;
     display: flex;
     flex-direction: column;
