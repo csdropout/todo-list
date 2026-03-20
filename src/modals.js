@@ -73,12 +73,17 @@ function displayProject(project) {
 
     header.classList.add("content-header");
     name.textContent = project.name;
-    editButton.textContent = "Edit Project"
+    editButton.textContent = "Edit Project";
     addButton.textContent = "Add Task";
 
     editButton.onclick = () => { showEditProjectDialog(project); }
-    addButton.onclick = () => { openTodoForm(); }
+    // next: style buttons
+    editButton.id = "edit-project-button";
 
+    addButton.onclick = () => { openTodoForm(); }
+    addButton.id = "add-todo-button";
+
+    buttonGroup.classList.add("button-group");
     buttonGroup.append(editButton, addButton);
 
     header.append(name, buttonGroup);
