@@ -1,6 +1,6 @@
 import Project from "./project.js";
 import { projectManager } from "./project.js";
-import Todo from "./todo.js";
+import Todo, { Status } from "./todo.js";
 
 export { initAddProjectButton, setupProjectForm, openTodoForm, addProjectToList, displayProject }
 
@@ -201,6 +201,11 @@ function createTodoItem(todo) {
     const deleteButton = document.createElement("button");
 
     checkbox.setAttribute("type", "checkbox");
+    checkbox.onclick = (e) => {
+        e.stopPropagation();
+        todo.status = todo.status === Status.INCOMPLETE? Status.COMPLETE : Status.INCOMPLETE;
+    }
+    
     name.textContent = todo.name;
     deleteButton.textContent = "x";
 
