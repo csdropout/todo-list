@@ -220,6 +220,11 @@ function createTodoItem(todo) {
 
     name.textContent = todo.name;
     deleteButton.textContent = "x";
+    deleteButton.onclick = (e) => {
+        e.stopPropagation();
+        projectManager.getActiveProject().deleteTodo(todo.id);
+        todoItem.remove();
+    }
 
     todoItem.append(checkbox, name, deleteButton);
     todoItem.dataset.id = todo.id;
