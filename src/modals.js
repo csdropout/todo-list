@@ -83,9 +83,6 @@ function displayProject(project) {
 
     header.append(name, buttonGroup);
 
-    const taskHeading = document.createElement("h2");
-    taskHeading.textContent = "Tasks";
-
     // Task list
     const list = document.createElement("ul");
     list.classList.add("todo-list");
@@ -95,7 +92,7 @@ function displayProject(project) {
         list.append(item);
     }
 
-    content.append(header, taskHeading, list);
+    content.append(header, list);
 }
 
 function showEditProjectDialog(project) {
