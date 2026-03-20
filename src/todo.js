@@ -4,7 +4,7 @@ export default class Todo {
         this.notes = notes;
         this.date = date;
         this.time = time;
-        this.priority = priority;
+        this.priority = priority.toLowerCase();
         this.status = Status.INCOMPLETE;
         this.id = crypto.randomUUID();
     }
@@ -17,4 +17,10 @@ export default class Todo {
 export const Status = {
     INCOMPLETE: "incomplete",
     COMPLETE: "complete",
+}
+
+export const Priority = {
+    LOW: "low",
+    MED: "medium",
+    HIGH: "high",
 }
