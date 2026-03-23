@@ -14,6 +14,7 @@ button {
     padding: 0.5em 1em;
     border-radius: 1em;
     cursor: pointer;
+    border: 1px solid black;
 }
 
 body {
@@ -79,7 +80,7 @@ body {
     gap: 0.5em;
 }
 
-.content ul li {
+.todo-item {
     display: flex;
     align-items: center;
     gap: 0.5em;
@@ -87,36 +88,36 @@ body {
     border-radius: 0.5em;
     border-left: 0.2em black solid;
     background-color: #fff;
+
+    p {
+        flex: 1;
+    }
+
+    button {
+        border: none;
+        background: none;
+        padding: 0.5em;
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
 }
 
-.content ul li.low-priority {
-    border-left-color: var(--low-priority-color);
-}
-
-.content ul li.med-priority {
-    border-left-color: var(--med-priority-color);
-}
-
-.content ul li.high-priority {
-    border-left-color: var(--high-priority-color);
-}
-
-.content ul li:hover {
+.todo-item:hover {
     background-color: var(--hover-bg-color);
 }
 
-.content ul li p {
-    flex: 1;
+.todo-item.low-priority {
+    border-left-color: var(--low-priority-color);
 }
 
-.content ul li button {
-    border: none;
-    background: none;
-    padding: 0.5em;
+.todo-item.med-priority {
+    border-left-color: var(--med-priority-color);
 }
 
-.content ul li button:hover {
-    cursor: pointer;
+.todo-item.high-priority {
+    border-left-color: var(--high-priority-color);
 }
 
 .header-button-group {
@@ -125,10 +126,10 @@ body {
     align-items: center;
 }
 
-#edit-project-button {
+#edit-project-button,
+#add-project-button {
     background-color: #fff;
     color: black;
-    border: 1px solid black;
 }
 
 #edit-project-button:hover,
@@ -139,7 +140,6 @@ body {
 #add-todo-button {
     background-color: #2367DC;
     color: #fff;
-    border: 1px solid black;
 }
 
 #add-todo-button:hover {

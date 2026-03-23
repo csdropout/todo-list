@@ -240,7 +240,8 @@ function createTodoItem(todo) {
         projectManager.getActiveProject().deleteTodo(todo.id);
         todoItem.remove();
     }
-
+    
+    todoItem.classList.add("todo-item")
     todoItem.append(checkbox, name, deleteButton);
     todoItem.dataset.id = todo.id;
 
