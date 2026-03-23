@@ -12,27 +12,32 @@
   padding: 1em;
 }
 
-label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2em;
-}
-
-input,
-textarea,
-select {
-  width: 100%;
-}
-
-textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-
 form {
   display: flex;
   flex-direction: column;
   gap: 1em;
+
+  h1 {
+    text-align: center;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
 }
 
 .button-group {
@@ -47,17 +52,5 @@ form {
 }
 
 dialog::backdrop {
-    backdrop-filter: blur(3px);
-}
-
-form h1 {
-    text-align: center;
-}
-
-#project-form-inputs,
-.form-inputs {
-    display: grid;
-    grid-template-columns: max-content max-content;
-    gap: 0.2rem;
-    row-gap: 0.5em;
+  backdrop-filter: blur(3px);
 }
