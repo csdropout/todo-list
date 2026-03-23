@@ -2,7 +2,7 @@ import Project from "./project.js";
 import { projectManager } from "./project.js";
 import Todo, { Priority, Status } from "./todo.js";
 
-export { initAddProjectButton, setupProjectForm, openTodoForm, addProjectToList, displayProject }
+export { initAddProjectButton, setupProjectForm, openTodoForm, addToProjectList, displayProject, setActiveProject, createProjectItem }
 
 function initAddProjectButton() {
     const button = document.querySelector("#add-project-button");
@@ -28,15 +28,20 @@ function setupProjectForm() {
         const name = form.querySelector("#name").value;
         const project = new Project(name);
         projectManager.addProject(project);
-        addProjectToList(project);
+        projectManager.setActiveProject(project.id);
+
+        const item = createProjectItem(project);
+        addToProjectList(item);
+        setActiveProject(item);
+        displayProject(project);
+
         form.reset();
         dialog.close();
     })
 }
 
-function addProjectToList(project) {
+function addToProjectList(item) {
     const list = document.querySelector("#project-list");
-    const item = createProjectItem(project);
     list.appendChild(item);
 }
 
@@ -50,12 +55,16 @@ function createProjectItem(project) {
         projectManager.setActiveProject(project.id)
 
         // set current project to be of class active
-        const activeProject = document.querySelector("#project-list li.active");
-        if (activeProject) { activeProject.classList.remove("active")}
-        item.classList.add("active");
+        setActiveProject(item);
     })
 
     return item;
+}
+
+function setActiveProject(item) {
+    const activeProject = document.querySelector("#project-list li.active");
+    if (activeProject) { activeProject.classList.remove("active")}
+    item.classList.add("active");
 }
 
 function displayProject(project) {
@@ -117,10 +126,14 @@ function showEditProjectDialog(project) {
 
         // delete project from dom list
         const currentProject = document.querySelector("#project-list li.active");
+        // NEXT: default prject not set to active on init
         document.querySelector("#project-list").removeChild(currentProject);
 
         // delete project from project list
         projectManager.deleteProject(project.id);
+
+        form.reset();
+        dialog.close();
     }
 
     form.addEventListener("submit", (e) => {
