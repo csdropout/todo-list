@@ -218,7 +218,10 @@ function createTodoItem(todo) {
     const deleteButton = document.createElement("button");
 
     checkbox.setAttribute("type", "checkbox");
-    if (todo.status === Status.COMPLETE) { checkbox.checked = true; }
+    if (todo.status === Status.COMPLETE) { 
+        checkbox.checked = true;
+        todoItem.classList.add("completed");
+    }
     switch (todo.priority) {
         case Priority.LOW:
             todoItem.classList.add("low-priority");
@@ -232,7 +235,13 @@ function createTodoItem(todo) {
     }
     checkbox.onclick = (e) => {
         e.stopPropagation();
-        todo.status = todo.status === Status.INCOMPLETE? Status.COMPLETE : Status.INCOMPLETE;
+        if (todo.status === Status.INCOMPLETE) {
+            todo.status = Status.COMPLETE;
+            checkbox.parentElement.classList.add("completed");
+        } else {
+            todo.status = Status.INCOMPLETE;
+            checkbox.parentElement.classList.remove("completed");
+        }
     }
 
     name.textContent = todo.name;

@@ -120,6 +120,11 @@ body {
     border-left-color: var(--high-priority-color);
 }
 
+.todo-item.completed p {
+    text-decoration: line-through;
+    color: #808080;
+}
+
 .header-button-group {
     display: flex;
     gap: 0.5em;
