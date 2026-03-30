@@ -1,6 +1,6 @@
 import "./style.css";
 import "./modal-style.css";
-import { initAddProjectButton, setupProjectForm, addToProjectList, displayProject, setActiveProject, createProjectItem } from "./modals.js";
+import { initAddProjectButton, setupProjectForm, addToProjectList, displayProject, setActiveProject, createProjectItem } from "./forms.js";
 import Project, { projectManager } from "./project.js"; 
 
 const project = new Project("Start");
