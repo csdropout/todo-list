@@ -26,38 +26,3 @@ export default class Project {
         Object.assign(this, edits);
     }
 }
-
-export const projectManager = (() => {
-    let projects = []
-    let activeProject = null;
-
-    const addProject = (project) => {
-        projects.push(project);
-    }
-
-    const deleteProject = (id) => {
-        projects = projects.filter((project) => project.id !== id);
-    }
-
-    const getProject = (id) => {
-        return projects.find((project) => project.id === id);
-    }
-    
-    const setActiveProject = (id) => {
-        activeProject = projects.find((project) => project.id === id);
-    }
-
-    const getActiveProject = () => {
-        return activeProject;
-    }
-
-    const editTodo = (todoId, updates) => {
-        activeProject.editTodo(todoId, updates)
-    }
-
-    const editProject = (id, edits) => {
-        getProject(id).edit(edits);
-    }
-
-    return { getProject, addProject, deleteProject, setActiveProject, getActiveProject, editTodo, editProject }
-})();

@@ -1,10 +1,11 @@
 import Project from "./project.js";
-import { projectManager } from "./project.js";
+import { projectManager } from "./storage.js";
 import Todo, { Priority, Status } from "./todo.js";
 
 export { initAddProjectButton, setupProjectForm, openTodoForm, addToProjectList, displayProject, setActiveProject, createProjectItem }
 
 function initAddProjectButton() {
+    console.log("init add project");
     const button = document.querySelector("#add-project-button");
     const dialog = document.querySelector("#project-dialog");
 
@@ -12,6 +13,7 @@ function initAddProjectButton() {
 }
 
 function setupProjectForm() {
+    console.log("set up add project form");
     const dialog = document.querySelector("#project-dialog");
     const form = dialog.querySelector("#project-form");
     const cancelButton = form.querySelector("button");
@@ -61,7 +63,7 @@ function createProjectItem(project) {
 }
 
 function setActiveProject(item) {
-    const activeProject = document.querySelector("#project-list li.active");
+    const activeProject = document.querySelector("li.active");
     if (activeProject) { activeProject.classList.remove("active")}
     item.classList.add("active");
 }
@@ -124,12 +126,13 @@ function showEditProjectDialog(project) {
         document.querySelector(".content").textContent = "";
 
         // delete project from dom list
-        const currentProject = document.querySelector("#project-list li.active");
+        const currentProject = document.querySelector("li.active");
         // NEXT: default prject not set to active on init
         document.querySelector("#project-list").removeChild(currentProject);
 
         // delete project from project list
         projectManager.deleteProject(project.id);
+        projectManager.setActiveProject(null);
 
         form.reset();
         dialog.close();
